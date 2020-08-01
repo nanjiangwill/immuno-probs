@@ -1,0 +1,22 @@
+Cli
+     """
+     # Semi-dynamically create the argparse arguments from given inputs.
+-    for name, kwargs in options.iteritems():
++    for name, kwargs in options.items():
+         kwargs_str = ""
+-        for (option, value) in kwargs.iteritems():
++        for (option, value) in kwargs.items():
+             if isinstance(value, str) and not option == 'type':
+                 kwargs_str += ', {}="{}"'.format(option, value)
+             else:
+
+
+
+
+Constant  
+ import os
+ import re
+-from ConfigParser import RawConfigParser
++from configparser import RawConfigParser
+ from pkg_resources import resource_filename
+ 

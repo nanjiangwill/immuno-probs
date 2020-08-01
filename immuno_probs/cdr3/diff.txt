@@ -1,0 +1,9 @@
+ # For the motif alignment, count motif occurences and add to
+                 # the counts.
+-                for seq_record, j in zip(alignment_codon, range(0, len(alignment_codon))):
++                for seq_record, j in zip(alignment_codon, list(range(0, len(alignment_codon)))):
+                     motif_counts[j] = (seq_record.seq == motif)
+
+
+
+Olga no change

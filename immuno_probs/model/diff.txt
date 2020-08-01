@@ -1,0 +1,10 @@
+Default model
+ 
+     # If name given, for the species and chain return dict with file paths
+     if name:
+-        for model, file_paths in default_models.items():
++        for model, file_paths in list(default_models.items()):
+             if model == name:
+                 return file_paths
+     else:
+

@@ -1,0 +1,5 @@
+ from Bio.Align.Applications import MuscleCommandline
+-from StringIO import StringIO
++from io import StringIO
+ from Bio import AlignIO
+ from Bio.Application import ApplicationError

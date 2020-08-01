@@ -1,0 +1,46 @@
+Evaluate
+
+                         files['marginals']
+                     ])
+                     ref_list = ['set_genomic']
+-                    for gene, filename in files['reference'].items():
++                    for gene, filename in list(files['reference'].items()):
+                         ref_list.append([gene, filename])
+                     command_list.append(ref_list)
+                 elif args.custom_model:
+
+
+
+Generate
+
+                                      data.filter(regex=("GeneChoice_J_gene_.*"))],
+                                     axis=1, sort=False)
+             real_df.columns = [v_gene_choice_col, j_gene_choice_col]
+-            real_df[v_gene_choice_col], real_df[j_gene_choice_col] = zip(
++            real_df[v_gene_choice_col], real_df[j_gene_choice_col] = list(zip(
+                 *real_df.apply(lambda row: (
+                     model.get_genomic_data().genV[int(row[v_gene_choice_col].strip('()'))][0],
+                     model.get_genomic_data().genJ[int(row[j_gene_choice_col].strip('()'))][0]
+-                ), axis=1))
++                ), axis=1)))
+         return real_df
+ 
+     def run(self, args, output_dir):
+
+
+
+
+
+Locate 
+
+             try:
+                 anchors_df.insert(2, 'function', numpy.nan)
+                 anchors_df.rename(columns={'name': 'gene'}, inplace=True)
+-                anchors_df['gene'], anchors_df['function'] = zip(*anchors_df['gene'].apply(
+-                    lambda value: (value.split('|')[1], value.split('|')[3])))
++                anchors_df['gene'], anchors_df['function'] = list(zip(*anchors_df['gene'].apply(
++                    lambda value: (value.split('|')[1], value.split('|')[3]))))
+             except (IndexError, ValueError):
+                 self.logger.error(
+                     "FASTA header needs to be separated by '|', needs to have gene name on index position 1 and function "
+
