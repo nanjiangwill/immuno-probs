@@ -32,6 +32,7 @@ from immuno_probs.cli.locate_cdr3_anchors import LocateCdr3Anchors
 from immuno_probs.util.cli import dynamic_cli_options
 from immuno_probs.util.constant import set_num_threads, set_separator, set_working_dir, set_out_name, set_config_data, get_config_data
 from immuno_probs.util.io import create_directory_path
+from immuno_probs.cli.build_and_evaluate_sequences import BuildAndEvaluate
 
 
 def main():
@@ -92,6 +93,7 @@ def main():
         bim = BuildIgorModel(subparsers=subparsers)
         ges = GenerateSequences(subparsers=subparsers)
         evs = EvaluateSequences(subparsers=subparsers)
+        bimnevs = BuildAndEvaluate(subparsers=subparsers)
     except (TypeError) as err:
         logger.error(str(err))
         return
@@ -139,6 +141,8 @@ def main():
         ges.run(args=parsed_arguments, output_dir=output_dir)
     elif parsed_arguments.subparser_name == 'evaluate':
         evs.run(args=parsed_arguments, output_dir=output_dir)
+    elif parsed_arguments.subparser_name == 'build_evaluate':
+        bimnevs.run(args=parsed_arguments, output_dir=output_dir)
     else:
         logger.error('No tool selected, run help command to show all supported tools')
 
